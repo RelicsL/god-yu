@@ -1,58 +1,85 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <p>
-      For a guide and recipes on how to configure / customize this project,<br>
-      check out the
-      <a href="https://cli.vuejs.org" target="_blank" rel="noopener">vue-cli documentation</a>.
-    </p>
-    <h3>Installed CLI Plugins</h3>
-    <ul>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-babel" target="_blank" rel="noopener">babel</a></li>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-eslint" target="_blank" rel="noopener">eslint</a></li>
-    </ul>
-    <h3>Essential Links</h3>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank" rel="noopener">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank" rel="noopener">Forum</a></li>
-      <li><a href="https://chat.vuejs.org" target="_blank" rel="noopener">Community Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank" rel="noopener">Twitter</a></li>
-      <li><a href="https://news.vuejs.org" target="_blank" rel="noopener">News</a></li>
-    </ul>
-    <h3>Ecosystem</h3>
-    <ul>
-      <li><a href="https://router.vuejs.org" target="_blank" rel="noopener">vue-router</a></li>
-      <li><a href="https://vuex.vuejs.org" target="_blank" rel="noopener">vuex</a></li>
-      <li><a href="https://github.com/vuejs/vue-devtools#vue-devtools" target="_blank" rel="noopener">vue-devtools</a></li>
-      <li><a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a></li>
-    </ul>
-  </div>
+  <el-table
+    :data="tableData"
+    style="width: 100%"
+    border
+  >
+    <el-table-column
+      prop="concurrency"
+      label="并发数"
+    >
+    </el-table-column>
+    <el-table-column
+      prop="loop"
+      label="循环迭代"
+    >
+    </el-table-column>
+    <el-table-column
+      prop="type"
+      label="交易类型"
+    >
+    </el-table-column>
+    <el-table-column
+      prop="ip"
+      label="IP地址"
+    >
+    </el-table-column>
+    <el-table-column
+      prop="serial"
+      label="流水号"
+    >
+    </el-table-column>
+    <el-table-column
+      prop="delete"
+      label="是否删除"
+    >
+    </el-table-column>
+    <el-table-column
+      prop="operation"
+      label="操作"
+    >
+      <template>
+        <el-button type="text" size="small">删除</el-button>
+        <el-button type="text" size="small">启动</el-button>
+        <el-button type="text" size="small" @click="open">编辑</el-button>
+      </template>
+    </el-table-column>
+    <el-table-column
+      prop="remake"
+      label="备注"
+    >
+    </el-table-column>
+  </el-table>
 </template>
 
 <script>
 export default {
   name: 'HelloWorld',
-  props: {
-    msg: String
+  data(){
+    return {
+          tableData: [{
+            concurrency: 1,
+            loop: 1,
+            type: '1900/1/2',
+            ip: '2.2.2.2',
+            serial: 222,
+            delete: '0:00',
+            remake:'god yu'
+          }]
+        }
+  },
+  methods: {
+    open() {
+      this.$alert('高宇是崴子', '崴子高宇', {
+        confirmButtonText: '确定',
+        callback: action => {
+          this.$message({
+            type: 'info',
+            message: `${action} 吔屎啦你`,
+          });
+        }
+      });
+    }
   }
 }
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
-</style>
